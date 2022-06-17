@@ -7,7 +7,12 @@ type Props = {
 
 const HelloWorld: FC<Props> = (props: Props) => {
   console.log(`props: ${props}`);
-  return <div>{ props.arg1 }, { props.arg2 }, hello, world</div>
+  return (
+    <div>
+      <h3>react component</h3>
+      { props.arg1 }, { props.arg2 }, hello, world
+    </div>
+  )
 }
 
 export default HelloWorld;

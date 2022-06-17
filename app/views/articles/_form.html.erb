@@ -25,6 +25,6 @@
     <%= form.submit %>
   </div>
 
-  <div id="hello-world" app-data="<%= {arg1: 'hoge', arg2: 1234}.to_json %>" />
+  <div id="hello-world" app-data="<%= {arg1: 'hoge', arg2: 2345}.to_json %>" />
   <%= javascript_include_tag "entrypoint/hello", "data-turbo-track": "reload", defer: true %>
 <% end %>
