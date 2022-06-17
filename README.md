@@ -8,3 +8,4 @@ yarn install
 bin/dev
 ```
 
+http://localhost:3000/articles/new
