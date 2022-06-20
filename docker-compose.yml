@@ -1,0 +1,32 @@
+version: '3.7'
+
+x-base_rails: &base_rails
+  build:
+    context: .
+    dockerfile: ./containers/local/rails/Dockerfile
+  init: true
+  volumes:
+    - .:/usr/src/app
+    - bundle-volume:/usr/local/bundle
+  tmpfs:
+    - /usr/src/app/tmp/pids
+    # docker for mac 3.3系における
+    # https://github.com/docker/for-mac/issues/5570
+    # の問題の、回避策
+    # https://github.com/rails/rails/issues/42100#issuecomment-856138195
+    - /tmp
+
+services:
+  rails:
+    <<: *base_rails
+    environment:
+      LOCAL_DOCKER_COMPOSE_MODE: 1
+      RAILS_LOG_TO_STDOUT: "true"
+      MANUAL: ${MANUAL:-0}
+      SECRET_KEY_BASE: 6f9f3084b937fcf3dc921d3d6d98c183c83395bd123a0607230d90e6766ae910182007c6fb695dd5f25b3ce77b5bee2c3a5cff13e18b75c1277aa77396cb4342
+    command:
+      - ./bin/dc_wrapper.sh
+    ports:
+      - "13000:3000"
+volumes:
+  bundle-volume:
