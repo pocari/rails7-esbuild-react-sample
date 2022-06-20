@@ -18,7 +18,7 @@ if [ "${MANUAL}" = "1" ] ; then
   echo "[MANUAL MODE]"
   tail -f /dev/null
 else
-  exec bin/rails s
+  exec bin/dev
 fi
 
 
